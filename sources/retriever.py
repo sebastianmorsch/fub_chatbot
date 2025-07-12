@@ -138,7 +138,7 @@ class Retriever:
         print("Index saved.")
 
     def _split_text(self, text: str, source: str, chunk_size=TARGET_CHUNK_TOKENS if TARGET_CHUNK_TOKENS > 0 else DEFAULT_CHUNK_TOKENS) -> List[Tuple[str, str]]:
-        # Simple chunking strategy based on TARGET_CHUNK_TOKENS (if > 0), otherwise fallback to paragraph-based for PDFs.
+        # Split the input text into consecutive chunks of ``chunk_size`` words.
         chunks = []
         words = text.split()
         for i in range(0, len(words), chunk_size):
