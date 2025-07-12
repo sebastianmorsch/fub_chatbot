@@ -4,13 +4,13 @@ from openai_client import ask_openai
 from retriever import Retriever
 
 
-# Core-Komponenten initialisieren
+# Initialize core components
 retriever = Retriever()
 retriever.load_or_build(force_rebuild=False)
 
-# Dein zentrales Message-Handler
+# Your central message handler
 async def handle_message(query: str, send_func):
-    # 1. Relevante Chunks holen
+    # 1. Retrieve relevant chunks
     chunks = retriever.search(query, k=10)
     
 #    print("Retrieved chunks:")
@@ -19,9 +19,9 @@ async def handle_message(query: str, send_func):
 #        print(chunk)
 #        print()
     
-    # 2. Prompt an OpenAI senden
+    # 2. Send prompt to OpenAI
     answer = ask_openai(query, chunks)
-    # 3. Antwort via send_func zurückschicken
+    # 3. Send response back via send_func
     await send_func(answer)
 
 def main():

@@ -1,10 +1,10 @@
 from retriever import Retriever
 
-# Initialisieren und Index laden oder neu bauen
+# Initialize and load or rebuild the index
 retriever = Retriever()
 retriever.load_or_build(force_rebuild=True)
 
-# Beispiel-Frage (hier anpassen!)
+# Example question (adjust here!)
 query = "Wie schalte ich Studio 7 ein?"
 
 print(f"\nQuery: {query}\n")

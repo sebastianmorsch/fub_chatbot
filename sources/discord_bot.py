@@ -6,7 +6,7 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 def create_bot(on_message_callback):
-    # Intents und Client initialisieren
+    # Initialize intents and client
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
@@ -24,14 +24,14 @@ def create_bot(on_message_callback):
         if not text:
             return
 
-        # send_func an das Callback übergeben
+        # Pass send_func to the callback
         async def send_func(response_text: str):
             await message.channel.send(response_text)
 
-        # Hier wird nur der Text und die send-Funktion übergeben
+        # Only the text and send function are passed here
         await on_message_callback(text, send_func)
 
-    # Wir geben eine einfache Schnittstelle zurück
+    # We return a simple interface
     class Bot:
         def start(self):
             client.run(DISCORD_TOKEN)
